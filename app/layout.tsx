@@ -7,7 +7,7 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "v0 App",
+  title: "H1-B Shock Agenda",
   description: "Created with v0",
   generator: "v0.app",
 }
