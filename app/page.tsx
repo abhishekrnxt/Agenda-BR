@@ -7,7 +7,7 @@ function EventHero() {
       <div className="mx-auto max-w-4xl px-6 py-0">
         <Image
           src="/images/event-hero-banner.png"
-          alt="Event banner for Beyond Opens: Data-Driven Messaging Strategies That Actually Work"
+          alt="Event banner for H-1B Shock & The GCC Advantage"
           width={1280}
           height={480}
           className="w-full h-auto rounded-md border object-cover"
@@ -30,14 +30,14 @@ function EventDetails() {
             <Calendar className="size-4 text-primary" aria-hidden="true" />
             <div className="flex flex-col">
               <span className="font-medium">Date</span>
-              <span className="text-muted-foreground">September 10, 2025</span>
+              <span className="text-muted-foreground">November 15, 2025</span>
             </div>
           </li>
           <li className="flex items-center gap-3 rounded-md border bg-card px-4 py-3">
             <MapPin className="size-4 text-primary" aria-hidden="true" />
             <div className="flex flex-col">
               <span className="font-medium">Location</span>
-              <span className="text-muted-foreground">Hyatt Regency, New Delhi</span>
+              <span className="text-muted-foreground">Hilton, Embassy Golflinks, Bengaluru</span>
             </div>
           </li>
           <li className="flex items-center gap-3 rounded-md border bg-card px-4 py-3">
