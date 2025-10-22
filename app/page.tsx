@@ -44,7 +44,7 @@ function EventDetails() {
             <Clock className="size-4 text-primary" aria-hidden="true" />
             <div className="flex flex-col">
               <span className="font-medium">Time</span>
-              <span className="text-muted-foreground">8:30 AM – 1:00 PM+</span>
+              <span className="text-muted-foreground">8:30 AM – 13:00 PM+</span>
             </div>
           </li>
         </ul>
