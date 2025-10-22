@@ -30,7 +30,7 @@ function EventDetails() {
             <Calendar className="size-4 text-primary" aria-hidden="true" />
             <div className="flex flex-col">
               <span className="font-medium">Date</span>
-              <span className="text-muted-foreground">November 15, 2025</span>
+              <span className="text-muted-foreground">November 13, 2025</span>
             </div>
           </li>
           <li className="flex items-center gap-3 rounded-md border bg-card px-4 py-3">
