@@ -61,44 +61,39 @@ type AgendaItem = {
 
 const agenda: AgendaItem[] = [
   {
-    time: "8:30 – 9:30 AM",
-    title: "Registration & Breakfast",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at vulputate odio, in mollis enim.",
+    time: "8:30 AM – 9:30 AM",
+    title: "Meet and Greet with Breakfast",
+    description: "Arrive early, enjoy a hot breakfast, and connect with fellow marketing and strategy leaders before the session kicks off.",
   },
   {
-    time: "9:30 – 10:00 AM",
-    title: "Networking",
+    time: "9:30 AM – 10:00 AM",
+    title: "Executive Networking",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae dapibus nibh, at bibendum nibh.",
+      "Informal networking and introductions with attendees and speakers — build early connections and align on the day's core theme.",
   },
   {
-    time: "10:00 – 11:00 AM",
-    title: "Roundtable: Session 1",
+    time: "10:00 AM – 11:00 AM",
+    title: "Session 1: H-1B Shock and the GCC Advantage",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel lorem nec tellus sollicitudin convallis.",
+      "A focused discussion on how the H-1B policy shift is accelerating GCC expansion, shifting decision-making to India, and changing how SaaS and tech companies approach GTM.",
   },
   {
-    time: "11:00 – 11:30 AM",
+    time: "11:00 AM – 11:15 AM",
     title: "Coffee Break",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat, sapien ac lacinia dictum, nisl massa dictum ante.",
+      "A short break to refresh and continue conversations in an informal setting.",
   },
   {
-    time: "11:30 AM – 12:30 PM",
-    title: "Roundtable: Session 2",
+    time: "11:15 AM – 1:00 PM",
+    title: "Session 2: Targeting, Personas & GCC Playbooks",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Sed non pretium massa.",
-  },
-  {
-    time: "12:30 – 1:00 PM",
-    title: "Roundtable: Session 3",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed dui ut nunc interdum fermentum.",
+      "Deep dive into GCC targeting frameworks, stakeholder mapping, and marketing strategies — with Bamboo Reports intelligence powering precision GTM.",
   },
   {
     time: "1:00 PM Onwards",
-    title: "Lunch & Networking",
+    title: "Networking Lunch",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec arcu ut diam tristique tincidunt.",
+      "Unwind over lunch with fellow leaders and speakers. A great opportunity to deepen conversations, exchange playbooks, and explore collaborations.",
   },
 ]
 
