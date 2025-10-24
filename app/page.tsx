@@ -84,13 +84,13 @@ const agenda: AgendaItem[] = [
       "A short break to refresh and continue conversations in an informal setting.",
   },
   {
-    time: "11:15 AM – 13:00 PM",
+    time: "11:15 AM – 12:30 PM",
     title: "Session 2: Targeting, Personas & GCC Playbooks",
     description:
       "Deep dive into GCC targeting frameworks, stakeholder mapping, and marketing strategies — with Bamboo Reports intelligence powering precision GTM.",
   },
   {
-    time: "13:00 PM Onwards",
+    time: "12:30 PM Onwards",
     title: "Networking Lunch",
     description:
       "Unwind over lunch with fellow leaders and speakers. A great opportunity to deepen conversations, exchange playbooks, and explore collaborations.",
