@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Calendar, MapPin, Clock } from "lucide-react"
 
@@ -15,6 +18,97 @@ function EventHero() {
         />
       </div>
     </header>
+  )
+}
+
+function CountdownTimer() {
+  const targetDate = new Date("2025-11-13T08:30:00+05:30") // November 13, 2025, 8:30 AM IST (Bengaluru timezone)
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime()
+      const target = targetDate.getTime()
+      const difference = target - now
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        })
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+      }
+    }
+
+    calculateTimeLeft()
+    const timer = setInterval(calculateTimeLeft, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
+  return (
+    <section className="w-full bg-gradient-to-br from-primary/5 via-background to-primary/5 border-b">
+      <div className="mx-auto max-w-4xl px-6 py-8">
+        <div className="text-center space-y-4">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+            Event Starts In
+          </h2>
+          <div className="grid grid-cols-4 gap-3 md:gap-6 max-w-2xl mx-auto">
+            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-5xl font-bold text-primary">
+                {timeLeft.days}
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
+                Days
+              </div>
+            </div>
+            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-5xl font-bold text-primary">
+                {timeLeft.hours}
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
+                Hours
+              </div>
+            </div>
+            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-5xl font-bold text-primary">
+                {timeLeft.minutes}
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
+                Minutes
+              </div>
+            </div>
+            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-5xl font-bold text-primary">
+                {timeLeft.seconds}
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
+                Seconds
+              </div>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            November 13, 2025 at 8:30 AM
+          </p>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -133,6 +227,7 @@ export default function Page() {
   return (
     <main>
       <EventHero />
+      <CountdownTimer />
       <EventDetails />
       <AgendaTimeline />
     </main>
