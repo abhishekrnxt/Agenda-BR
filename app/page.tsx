@@ -41,6 +41,13 @@ function CountdownTimer() {
     minutes: 0,
     seconds: 0,
   })
+  const [prevTimeLeft, setPrevTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+  const [animatingKeys, setAnimatingKeys] = useState<Set<string>>(new Set())
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -52,12 +59,29 @@ function CountdownTimer() {
       const difference = target - now
 
       if (difference > 0) {
-        setTimeLeft({
+        const newTimeLeft = {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        }
+
+        // Detect changes and trigger animation
+        const changedKeys = new Set<string>()
+        Object.keys(newTimeLeft).forEach((key) => {
+          const k = key as keyof typeof newTimeLeft
+          if (newTimeLeft[k] !== timeLeft[k]) {
+            changedKeys.add(key)
+          }
         })
+
+        if (changedKeys.size > 0) {
+          setAnimatingKeys(changedKeys)
+          setPrevTimeLeft(timeLeft)
+          setTimeout(() => setAnimatingKeys(new Set()), 600)
+        }
+
+        setTimeLeft(newTimeLeft)
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
       }
@@ -67,7 +91,7 @@ function CountdownTimer() {
     const timer = setInterval(calculateTimeLeft, 1000)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [timeLeft])
 
   if (!mounted) {
     return null
@@ -95,33 +119,45 @@ function CountdownTimer() {
           {/* Countdown grid with glass effect */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
             {[
-              { value: timeLeft.days, label: 'Days', delay: '0ms' },
-              { value: timeLeft.hours, label: 'Hours', delay: '100ms' },
-              { value: timeLeft.minutes, label: 'Minutes', delay: '200ms' },
-              { value: timeLeft.seconds, label: 'Seconds', delay: '300ms' }
-            ].map((item, index) => (
-              <div
-                key={item.label}
-                className="relative group animate-scale-in"
-                style={{ animationDelay: item.delay }}
-              >
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              { value: timeLeft.days, label: 'Days', key: 'days', delay: '0ms' },
+              { value: timeLeft.hours, label: 'Hours', key: 'hours', delay: '100ms' },
+              { value: timeLeft.minutes, label: 'Minutes', key: 'minutes', delay: '200ms' },
+              { value: timeLeft.seconds, label: 'Seconds', key: 'seconds', delay: '300ms' }
+            ].map((item, index) => {
+              const isAnimating = animatingKeys.has(item.key)
+              return (
+                <div
+                  key={item.label}
+                  className="relative group animate-scale-in"
+                  style={{ animationDelay: item.delay }}
+                >
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative glass-effect-light rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 border border-primary/20">
-                  <div className="text-4xl md:text-6xl font-bold gradient-text">
-                    {String(item.value).padStart(2, '0')}
-                  </div>
-                  <div className="text-xs md:text-sm text-muted-foreground mt-3 font-semibold uppercase tracking-wider">
-                    {item.label}
-                  </div>
+                  <div className="relative glass-effect-light rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 border border-primary/20">
+                    <div
+                      className={`text-4xl md:text-6xl font-bold gradient-text transition-all duration-300 ${
+                        isAnimating ? 'number-change' : ''
+                      }`}
+                      style={{
+                        display: 'inline-block',
+                        transformStyle: 'preserve-3d',
+                        backfaceVisibility: 'hidden'
+                      }}
+                    >
+                      {String(item.value).padStart(2, '0')}
+                    </div>
+                    <div className="text-xs md:text-sm text-muted-foreground mt-3 font-semibold uppercase tracking-wider">
+                      {item.label}
+                    </div>
 
-                  {/* Decorative corner accents */}
-                  <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-primary/40 rounded-tl-lg" />
-                  <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-primary/40 rounded-br-lg" />
+                    {/* Decorative corner accents */}
+                    <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-primary/40 rounded-tl-lg" />
+                    <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-primary/40 rounded-br-lg" />
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Date info with animated background */}
