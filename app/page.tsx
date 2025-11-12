@@ -7,17 +7,6 @@ import { Calendar, Clock, Sparkles } from "lucide-react"
 function EventHero() {
   return (
     <header className="relative w-full overflow-hidden">
-      {/* Animated background pattern */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-        <Image
-          src="/images/background-pattern.svg"
-          alt=""
-          fill
-          className="object-cover animate-pulse-slow"
-          priority
-        />
-      </div>
-
       {/* Gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
 
@@ -86,16 +75,6 @@ function CountdownTimer() {
 
   return (
     <section className="relative w-full overflow-hidden py-16 md:py-20">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <Image
-          src="/images/background-pattern.svg"
-          alt=""
-          fill
-          className="object-cover"
-        />
-      </div>
-
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10 animate-pulse-slow" />
 
@@ -130,7 +109,7 @@ function CountdownTimer() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative glass-effect-light rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 border border-primary/20">
-                  <div className="text-4xl md:text-6xl font-bold gradient-text countdown-number">
+                  <div className="text-4xl md:text-6xl font-bold gradient-text">
                     {String(item.value).padStart(2, '0')}
                   </div>
                   <div className="text-xs md:text-sm text-muted-foreground mt-3 font-semibold uppercase tracking-wider">
@@ -223,16 +202,6 @@ const agenda: AgendaItem[] = [
 function AgendaTimeline() {
   return (
     <section id="agenda" aria-labelledby="agenda-title" className="relative w-full overflow-hidden py-16 md:py-20 scroll-mt-8">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <Image
-          src="/images/background-pattern.svg"
-          alt=""
-          fill
-          className="object-cover"
-        />
-      </div>
-
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
 
@@ -303,16 +272,6 @@ function AgendaTimeline() {
 export default function Page() {
   return (
     <main className="relative min-h-screen overflow-hidden">
-      {/* Global background pattern */}
-      <div className="fixed inset-0 -z-10 opacity-[0.015] dark:opacity-[0.02]">
-        <Image
-          src="/images/background-pattern.svg"
-          alt=""
-          fill
-          className="object-cover"
-        />
-      </div>
-
       {/* Animated gradient orbs in background */}
       <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow -z-10" />
       <div className="fixed bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse-slow -z-10" style={{ animationDelay: '1s' }} />
