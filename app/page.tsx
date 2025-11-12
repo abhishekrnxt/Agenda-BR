@@ -109,7 +109,10 @@ function CountdownTimer() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative glass-effect-light rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 border border-primary/20">
-                  <div className="text-4xl md:text-6xl font-bold gradient-text">
+                  <div
+                    key={item.value}
+                    className="text-4xl md:text-6xl font-bold gradient-text countdown-flip"
+                  >
                     {String(item.value).padStart(2, '0')}
                   </div>
                   <div className="text-xs md:text-sm text-muted-foreground mt-3 font-semibold uppercase tracking-wider">
