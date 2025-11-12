@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Calendar, MapPin, Clock, Sparkles } from "lucide-react"
+import { Calendar, Clock, Sparkles } from "lucide-react"
 
 function EventHero() {
   return (
@@ -152,82 +152,24 @@ function CountdownTimer() {
               November 13, 2025 at 8:30 AM IST
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
-function EventDetails() {
-  return (
-    <section aria-labelledby="event-details-title" className="relative w-full overflow-hidden py-12 md:py-16">
-      <h2 id="event-details-title" className="sr-only">
-        Event details
-      </h2>
-
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <Image
-          src="/images/background-pattern.svg"
-          alt=""
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-5xl px-6">
-        <div className="grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-3">
-          {[
-            {
-              icon: Calendar,
-              label: 'Date',
-              value: 'Thursday, November 13, 2025',
-              delay: '0ms',
-              gradient: 'from-blue-500/10 to-cyan-500/10'
-            },
-            {
-              icon: MapPin,
-              label: 'Location',
-              value: 'Hilton, Embassy Golflinks, Bengaluru',
-              delay: '100ms',
-              gradient: 'from-purple-500/10 to-pink-500/10'
-            },
-            {
-              icon: Clock,
-              label: 'Time',
-              value: '8:30 AM – 13:00 PM+',
-              delay: '200ms',
-              gradient: 'from-green-500/10 to-emerald-500/10'
-            }
-          ].map((item, index) => (
-            <div
-              key={item.label}
-              className="relative group animate-slide-up"
-              style={{ animationDelay: item.delay }}
+          {/* View Agenda CTA Button */}
+          <div className="animate-scale-in" style={{ animationDelay: '400ms' }}>
+            <a
+              href="#agenda"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:from-primary/90 hover:to-secondary/90 group"
             >
-              {/* Gradient glow on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-              <div className="relative glass-effect-light rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 border border-primary/10">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 group-hover:scale-110 transition-transform duration-300">
-                    <item.icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </div>
-                  <div className="flex flex-col flex-1">
-                    <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                      {item.label}
-                    </span>
-                    <span className="text-base font-medium text-foreground">
-                      {item.value}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full" />
-              </div>
-            </div>
-          ))}
+              <span>View Agenda</span>
+              <svg
+                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -280,7 +222,7 @@ const agenda: AgendaItem[] = [
 
 function AgendaTimeline() {
   return (
-    <section aria-labelledby="agenda-title" className="relative w-full overflow-hidden py-16 md:py-20">
+    <section id="agenda" aria-labelledby="agenda-title" className="relative w-full overflow-hidden py-16 md:py-20 scroll-mt-8">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
         <Image
@@ -377,7 +319,6 @@ export default function Page() {
 
       <EventHero />
       <CountdownTimer />
-      <EventDetails />
       <AgendaTimeline />
 
       {/* Scroll to top button effect area */}
