@@ -2,20 +2,31 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Calendar, MapPin, Clock } from "lucide-react"
+import { Calendar, Clock, Sparkles } from "lucide-react"
 
 function EventHero() {
   return (
-    <header className="w-full border-b bg-background">
-      <div className="mx-auto max-w-4xl px-6 py-0">
-        <Image
-          src="/images/event-hero-banner.png"
-          alt="Event banner for H-1B Shock & The GCC Advantage"
-          width={1280}
-          height={480}
-          className="w-full h-auto rounded-md border object-cover"
-          priority
-        />
+    <header className="relative w-full overflow-hidden">
+      {/* Gradient overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
+
+      <div className="relative mx-auto max-w-5xl px-6 py-8 md:py-12">
+        <div className="animate-fade-in">
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-border/50 glow-on-hover">
+            {/* Shimmer effect overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-shimmer"
+                 style={{ backgroundSize: '1000px 100%' }} />
+
+            <Image
+              src="/images/event-hero-banner.png"
+              alt="Event banner for H-1B Shock & The GCC Advantage"
+              width={1280}
+              height={480}
+              className="w-full h-auto object-cover"
+              priority
+            />
+          </div>
+        </div>
       </div>
     </header>
   )
@@ -63,85 +74,82 @@ function CountdownTimer() {
   }
 
   return (
-    <section className="w-full bg-gradient-to-br from-primary/5 via-background to-primary/5 border-b">
-      <div className="mx-auto max-w-4xl px-6 py-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Event Starts In
-          </h2>
-          <div className="grid grid-cols-4 gap-3 md:gap-6 max-w-2xl mx-auto">
-            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl md:text-5xl font-bold text-primary">
-                {timeLeft.days}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
-                Days
-              </div>
-            </div>
-            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl md:text-5xl font-bold text-primary">
-                {timeLeft.hours}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
-                Hours
-              </div>
-            </div>
-            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl md:text-5xl font-bold text-primary">
-                {timeLeft.minutes}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
-                Minutes
-              </div>
-            </div>
-            <div className="bg-card border rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl md:text-5xl font-bold text-primary">
-                {timeLeft.seconds}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">
-                Seconds
-              </div>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            November 13, 2025 at 8:30 AM
-          </p>
-        </div>
-      </div>
-    </section>
-  )
-}
+    <section className="relative w-full overflow-hidden py-16 md:py-20">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10 animate-pulse-slow" />
 
-function EventDetails() {
-  return (
-    <section aria-labelledby="event-details-title" className="w-full border-b bg-background">
-      <h2 id="event-details-title" className="sr-only">
-        Event details
-      </h2>
-      <div className="mx-auto max-w-4xl px-6 py-5">
-        <ul className="grid grid-cols-1 gap-3 text-sm md:grid-cols-3">
-          <li className="flex items-center gap-3 rounded-md border bg-card px-4 py-3">
-            <Calendar className="size-4 text-primary" aria-hidden="true" />
-            <div className="flex flex-col">
-              <span className="font-medium">Date</span>
-              <span className="text-muted-foreground">Thursday, November 13, 2025</span>
-            </div>
-          </li>
-          <li className="flex items-center gap-3 rounded-md border bg-card px-4 py-3">
-            <MapPin className="size-4 text-primary" aria-hidden="true" />
-            <div className="flex flex-col">
-              <span className="font-medium">Location</span>
-              <span className="text-muted-foreground">Hilton, Embassy Golflinks, Bengaluru</span>
-            </div>
-          </li>
-          <li className="flex items-center gap-3 rounded-md border bg-card px-4 py-3">
-            <Clock className="size-4 text-primary" aria-hidden="true" />
-            <div className="flex flex-col">
-              <span className="font-medium">Time</span>
-              <span className="text-muted-foreground">8:30 AM – 13:00 PM+</span>
-            </div>
-          </li>
-        </ul>
+      {/* Radial glow effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
+
+      <div className="relative mx-auto max-w-5xl px-6">
+        <div className="text-center space-y-8 animate-slide-up">
+          {/* Title with sparkle icon */}
+          <div className="flex items-center justify-center gap-3">
+            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight gradient-text">
+              Event Starts In
+            </h2>
+            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+          </div>
+
+          {/* Countdown grid with glass effect */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
+            {[
+              { value: timeLeft.days, label: 'Days', delay: '0ms' },
+              { value: timeLeft.hours, label: 'Hours', delay: '100ms' },
+              { value: timeLeft.minutes, label: 'Minutes', delay: '200ms' },
+              { value: timeLeft.seconds, label: 'Seconds', delay: '300ms' }
+            ].map((item, index) => (
+              <div
+                key={item.label}
+                className="relative group animate-scale-in"
+                style={{ animationDelay: item.delay }}
+              >
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative glass-effect-light rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 border border-primary/20">
+                  <div className="text-4xl md:text-6xl font-bold gradient-text">
+                    {String(item.value).padStart(2, '0')}
+                  </div>
+                  <div className="text-xs md:text-sm text-muted-foreground mt-3 font-semibold uppercase tracking-wider">
+                    {item.label}
+                  </div>
+
+                  {/* Decorative corner accents */}
+                  <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-primary/40 rounded-tl-lg" />
+                  <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-primary/40 rounded-br-lg" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Date info with animated background */}
+          <div className="inline-flex items-center gap-2 px-6 py-3 glass-effect-light rounded-full animate-float">
+            <Calendar className="w-4 h-4 text-primary" />
+            <p className="text-sm font-medium">
+              November 13, 2025 at 8:30 AM IST
+            </p>
+          </div>
+
+          {/* View Agenda CTA Button */}
+          <div className="animate-scale-in" style={{ animationDelay: '400ms' }}>
+            <a
+              href="#agenda"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:from-primary/90 hover:to-secondary/90 group"
+            >
+              <span>View Agenda</span>
+              <svg
+                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -193,27 +201,65 @@ const agenda: AgendaItem[] = [
 
 function AgendaTimeline() {
   return (
-    <section aria-labelledby="agenda-title" className="w-full">
-      <div className="mx-auto max-w-4xl px-6 py-10 md:py-12">
-        <div className="mb-6">
-          <h2 id="agenda-title" className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
+    <section id="agenda" aria-labelledby="agenda-title" className="relative w-full overflow-hidden py-16 md:py-20 scroll-mt-8">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+
+      <div className="relative mx-auto max-w-5xl px-6">
+        <div className="mb-12 md:mb-16 text-center animate-slide-up">
+          <h2 id="agenda-title" className="text-balance text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight gradient-text mb-4">
             A Morning Packed With Actionable Insights
           </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Join us for an immersive experience filled with networking, insights, and strategic discussions
+          </p>
         </div>
 
-        <ol className="ml-3">
+        <ol className="relative ml-6 md:ml-8">
+          {/* Vertical line with gradient */}
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
+
           {agenda.map((item, idx) => (
-            <li key={idx} className="relative mb-8 border-l border-border pl-6 last:mb-0 group">
+            <li
+              key={idx}
+              className="relative mb-12 pl-8 md:pl-12 last:mb-0 group animate-slide-in-left"
+              style={{ animationDelay: `${idx * 100}ms` }}
+            >
+              {/* Timeline dot with pulse effect */}
               <div
-                className="absolute -left-[8px] top-2 size-3 rounded-full border-2 border-primary bg-background transition-transform duration-200 group-hover:scale-110"
+                className="absolute -left-[11px] top-3 size-6 rounded-full border-4 border-primary bg-background shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:shadow-xl group-hover:border-secondary"
                 aria-hidden="true"
-              />
-              <div className="flex flex-col gap-1">
-                <span className="inline-flex w-fit items-center rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
-                  {item.time}
-                </span>
-                <h3 className="text-lg font-medium">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+              >
+                <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+              </div>
+
+              {/* Content card */}
+              <div className="relative glass-effect-light rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 border border-primary/10">
+                {/* Decorative corner gradient */}
+                <div className="absolute -top-1 -right-1 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-tr-2xl rounded-bl-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative flex flex-col gap-3">
+                  {/* Time badge */}
+                  <div className="inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 px-4 py-2 shadow-sm">
+                    <Clock className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                      {item.time}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Hover indicator */}
+                <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </li>
           ))}
@@ -225,11 +271,17 @@ function AgendaTimeline() {
 
 export default function Page() {
   return (
-    <main>
+    <main className="relative min-h-screen overflow-hidden">
+      {/* Animated gradient orbs in background */}
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow -z-10" />
+      <div className="fixed bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse-slow -z-10" style={{ animationDelay: '1s' }} />
+
       <EventHero />
       <CountdownTimer />
-      <EventDetails />
       <AgendaTimeline />
+
+      {/* Scroll to top button effect area */}
+      <div className="h-20" />
     </main>
   )
 }
