@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Calendar, Clock, Sparkles } from "lucide-react"
+import { Calendar, Clock, Sparkles, PartyPopper } from "lucide-react"
+import confetti from "canvas-confetti"
 
 function EventHero() {
   return (
@@ -49,6 +50,8 @@ function CountdownTimer() {
   })
   const [animatingKeys, setAnimatingKeys] = useState<Set<string>>(new Set())
   const [mounted, setMounted] = useState(false)
+  const [eventEnded, setEventEnded] = useState(false)
+  const [confettiTriggered, setConfettiTriggered] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -84,6 +87,7 @@ function CountdownTimer() {
         setTimeLeft(newTimeLeft)
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        setEventEnded(true)
       }
     }
 
@@ -93,10 +97,97 @@ function CountdownTimer() {
     return () => clearInterval(timer)
   }, [timeLeft])
 
+  // Trigger confetti when event ends
+  useEffect(() => {
+    if (eventEnded && !confettiTriggered) {
+      setConfettiTriggered(true)
+
+      // Fire confetti from multiple angles
+      const duration = 5000
+      const animationEnd = Date.now() + duration
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
+
+      function randomInRange(min: number, max: number) {
+        return Math.random() * (max - min) + min
+      }
+
+      const interval: NodeJS.Timeout = setInterval(function() {
+        const timeLeft = animationEnd - Date.now()
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval)
+        }
+
+        const particleCount = 50 * (timeLeft / duration)
+
+        // Fire from left
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        })
+
+        // Fire from right
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        })
+      }, 250)
+    }
+  }, [eventEnded, confettiTriggered])
+
   if (!mounted) {
     return null
   }
 
+  // Show Event Ended UI
+  if (eventEnded) {
+    return (
+      <section className="relative w-full overflow-hidden py-16 md:py-20">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-background to-purple-500/10 animate-pulse-slow" />
+
+        {/* Multiple radial glow effects for celebration */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-500/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-yellow-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
+
+        <div className="relative mx-auto max-w-5xl px-6">
+          <div className="text-center space-y-8">
+            {/* Celebration Icon */}
+            <div className="flex justify-center animate-bounce">
+              <div className="relative">
+                <PartyPopper className="w-24 h-24 md:w-32 md:h-32 text-primary animate-pulse" />
+                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-ping" />
+              </div>
+            </div>
+
+            {/* Event Ended Title */}
+            <div className="space-y-4 animate-slide-up">
+              <h2 className="text-4xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-500 via-primary to-purple-500 bg-clip-text text-transparent animate-pulse">
+                Event Has Ended!
+              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground font-medium">
+                Thanks for being part of this amazing experience
+              </p>
+            </div>
+
+            {/* Thank you message */}
+            <div className="mt-12 inline-flex items-center gap-2 px-8 py-4 glass-effect-light rounded-full animate-float border border-primary/20">
+              <Sparkles className="w-5 h-5 text-primary" />
+              <p className="text-lg font-semibold gradient-text">
+                We hope to see you at our next event!
+              </p>
+              <Sparkles className="w-5 h-5 text-primary" />
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Show Countdown UI
   return (
     <section className="relative w-full overflow-hidden py-16 md:py-20">
       {/* Animated gradient background */}
