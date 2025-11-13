@@ -173,27 +173,6 @@ function CountdownTimer() {
               </p>
             </div>
 
-            {/* Decorative celebration cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
-              <div className="glass-effect-light rounded-2xl p-6 shadow-xl border border-green-500/20 animate-slide-in-left hover:scale-105 transition-transform duration-300">
-                <div className="text-5xl mb-2">🎉</div>
-                <h3 className="text-lg font-bold mb-2">Great Insights</h3>
-                <p className="text-sm text-muted-foreground">Amazing discussions on H-1B and GCC strategies</p>
-              </div>
-
-              <div className="glass-effect-light rounded-2xl p-6 shadow-xl border border-purple-500/20 animate-slide-up hover:scale-105 transition-transform duration-300" style={{ animationDelay: '100ms' }}>
-                <div className="text-5xl mb-2">🤝</div>
-                <h3 className="text-lg font-bold mb-2">Networking</h3>
-                <p className="text-sm text-muted-foreground">Connected with industry leaders and experts</p>
-              </div>
-
-              <div className="glass-effect-light rounded-2xl p-6 shadow-xl border border-yellow-500/20 animate-slide-in-left hover:scale-105 transition-transform duration-300" style={{ animationDelay: '200ms' }}>
-                <div className="text-5xl mb-2">💡</div>
-                <h3 className="text-lg font-bold mb-2">Actionable Takeaways</h3>
-                <p className="text-sm text-muted-foreground">Practical strategies for your business</p>
-              </div>
-            </div>
-
             {/* Thank you message */}
             <div className="mt-12 inline-flex items-center gap-2 px-8 py-4 glass-effect-light rounded-full animate-float border border-primary/20">
               <Sparkles className="w-5 h-5 text-primary" />
